@@ -11,7 +11,8 @@ module.exports = function(grunt) {
     ghost: {
       dist: {
         filesSrc: [
-          'tests/smoke/*.js'
+          // 'tests/smoke/*.js'
+          'tests/smoke/main.js'
         ],
         options: {
           direct: true,
