@@ -2,8 +2,8 @@
 
 'use strict';
 
-// var MAIN_URL= 'http://127.0.0.1:6001/';
-var MAIN_URL= 'http://localhost:6081/';
+var MAIN_URL= 'http://127.0.0.1:6001/';
+// var MAIN_URL= 'http://localhost:6081/';
 
 casper.test.comment('check hosts');
 casper.on('remote.message', function(message){
@@ -21,9 +21,6 @@ casper.waitFor(hoodieIsLoaded);
 
 // create some todos
 casper.then(function() {
-  casper.echo(casper.evaluate(function() {
-    return 'hoodie?';
-  }));
   casper.echo(this.evaluate(function() {
     return 'hoodie: ' + (typeof window.hoodie);
   }));
