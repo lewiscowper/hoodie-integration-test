@@ -120,8 +120,8 @@ module.exports = function(grunt) {
 
   // Default task(s).
   grunt.registerTask('dev', [
-    'rm-app',
-    'shell:createApp',
+    // 'rm-app',
+    // 'shell:createApp',
     'replace:injectBindShimIntoApp',
     'watch'
   ]);
