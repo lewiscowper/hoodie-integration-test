@@ -27,4 +27,9 @@ casper.test.begin('Sign up -> sign out -> sign in', function(test) {
   casper.then(function() {
     test.assertSelectorHasText('.hoodie-username', username);
   });
+
+  // IMPORTANT! Always cleanup, on each visited host.
+  require('../../steps/app/destroyaccount')(test, {
+    url: hosts.www
+  });
 });
