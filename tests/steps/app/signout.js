@@ -1,12 +1,12 @@
 /*global casper:false */
 
 module.exports = function(test) {
-  casper.waitForSelector('.hoodie-account-signedin .btn.btn-small.btn-primary:nth-child(1)',
+  casper.waitForSelector('[data-hoodie-action=signout]',
   function success() {
-    test.assertExists('.hoodie-account-signedin .btn.btn-small.btn-primary:nth-child(1)');
-    this.click('.hoodie-account-signedin .btn.btn-small.btn-primary:nth-child(1)');
+    test.assertExists('[data-hoodie-action=signout]');
+    this.click('[data-hoodie-action=signout]');
   },
   function fail() {
-    test.assertExists('.hoodie-account-signedin .btn.btn-small.btn-primary:nth-child(1)');
+    test.assertExists('[data-hoodie-action=signout]');
   });
 };

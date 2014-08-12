@@ -24,10 +24,6 @@ casper.test.begin('add tasks, reload, sign up, sign in, sync', function(test) {
     username: username,
     password: 'hoodiepass'
   });
-  casper.wait(1000);
-  casper.then(function() {
-    casper.capture('debug/data-after-signup.png');
-  });
 
   casper.waitForSelectorTextChange('.hoodie-username');
 
@@ -36,15 +32,6 @@ casper.test.begin('add tasks, reload, sign up, sign in, sync', function(test) {
   require('../../steps/app/signin')(test, {
     username: username,
     password: 'hoodiepass'
-  });
-
-  casper.wait(1000);
-  casper.then(function() {
-    casper.evaluate(function() {
-      console.log('location.href');
-      console.log(location.href);
-    });
-    casper.capture('debug/data.png');
   });
 
   casper.waitForSelectorTextChange('.hoodie-username');
