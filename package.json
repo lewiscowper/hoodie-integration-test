@@ -17,7 +17,9 @@
   "main": "index.js",
   "devDependencies": {
     "grunt-contrib-watch": "^0.6.1",
-    "grunt-text-replace": "~0.3.12"
+    "grunt-text-replace": "~0.3.12",
+    "grunt-dalek": "~0.2.0",
+    "dalek-browser-chrome": "0.0.10"
   },
   "codename": "wondrous-termite"
 }

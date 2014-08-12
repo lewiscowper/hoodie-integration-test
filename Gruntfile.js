@@ -23,7 +23,8 @@ module.exports = function(grunt) {
         tasks: [
           'rm-data',
           'hoodie:start',
-          'casper:watch',
+          // 'casper:watch',
+          'dalek:watch',
           'hoodie:stop',
         ]
       },
@@ -48,6 +49,18 @@ module.exports = function(grunt) {
           'fail-fast': true,
           concise: true
         }
+      }
+    },
+
+    dalek: {
+      options: {
+        browser: ['chrome']
+      },
+      watch: {
+        src: ['tests/dalek/*.js']
+      },
+      dist: {
+        src: ['tests/dalek/*.js']
       }
     },
 
@@ -120,8 +133,8 @@ module.exports = function(grunt) {
 
   // Default task(s).
   grunt.registerTask('dev', [
-    'rm-app',
-    'shell:createApp',
+    // 'rm-app',
+    // 'shell:createApp',
     'replace:injectBindShimIntoApp',
     'watch'
   ]);
@@ -129,7 +142,12 @@ module.exports = function(grunt) {
   grunt.registerTask('test', function() {
     var module = this.args.join('');
     var tasksPre = ['shell:createApp', 'replace:injectBindShimIntoApp'];
-    var tasksPost = ['hoodie:start', 'casper:dist', 'hoodie:stop'];
+    var tasksPost = [
+      'hoodie:start',
+      // 'casper:dist',
+      'dalek:dist',
+      'hoodie:stop'
+    ];
 
     if (!module) {
       return grunt.task.run(tasksPre.concat(tasksPost));
