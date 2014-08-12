@@ -1,3 +1,4 @@
+/* global hoodie */
 var hosts = require('../hosts.json');
 
 var username = 'dalekuser';
@@ -10,27 +11,36 @@ module.exports = {
       .open(hosts.www)
       .assert.visible('[data-hoodie-action=signup]', 'Sign up button visible')
       .click('[data-hoodie-action=signup]')
-      .assert.visible('.modal form', 'Sign up form visible')
+      .waitForElement('.modal form')
       .type('[name=username]', username)
       .type('[name=password]', password)
       .type('[name=password_confirmation]', password)
       .submit('.modal form')
       .waitFor(function() {
-        return !!hoodie.account.username
+        return !!hoodie.account.username;
       })
       .assert.visible('.hoodie-account-signedin', 'Sign out button visible')
       .assert.text('.hoodie-account-signedin .hoodie-username').to.contain('dalekuser')
       .click('[data-hoodie-action=signout]')
+      .waitFor(function() {
+        return !hoodie.account.username;
+      })
       .click('.hoodie-account-signedout [data-toggle=dropdown]')
       .click('[data-hoodie-action=signin]')
-      .assert.visible('.modal form', 'Sign in form visible')
+      .waitForElement('.modal form')
       .type('[name=username]', username)
       .type('[name=password]', password)
       .submit('.modal form')
-      .waitFor(function() {
-        return !hoodie.account.username
-      })
       .assert.visible('.hoodie-account-signedin .hoodie-username')
-      .assert.text('.hoodie-account-signedin .hoodie-username').to.contain('dalekuser');
+      .assert.text('.hoodie-account-signedin .hoodie-username').to.contain('dalekuser')
+
+      // cleanup again. This is important, as cookies / localStorage persists
+      .execute(function() {
+        hoodie.account.destroy(true);
+      })
+      .waitFor(function() {
+        return !hoodie.account.username;
+      })
+      .done();
   },
 };

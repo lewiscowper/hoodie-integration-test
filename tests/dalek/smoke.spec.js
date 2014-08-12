@@ -5,7 +5,7 @@ module.exports = {
   'returns app': function(test) {
     test
       .open(hosts.www)
-      .assert.text('.jumbotron p', 'hoodie playground!', 'shows my first hoodie app')
+      .assert.text('.jumbotron p', 'hoodie playground.', 'shows my first hoodie app')
       .done();
   },
 
